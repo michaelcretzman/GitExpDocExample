@@ -13,7 +13,16 @@ pipeline:
               spec:
                   cloneCodebase: false
                   execution:
-                      steps: []
+                      steps:
+                          - step:
+                                type: Run
+                                name: example
+                                identifier: example
+                                spec:
+                                    connectorRef: <+input>
+                                    image: <+input>
+                                    command: echo "hello world"
+                                    privileged: false
                   serviceDependencies: []
                   infrastructure:
                       type: KubernetesDirect
