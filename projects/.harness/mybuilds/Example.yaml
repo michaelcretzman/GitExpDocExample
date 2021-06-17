@@ -1,0 +1,31 @@
+pipeline:
+    name: Example
+    identifier: Example
+    projectIdentifier: GitExp_Doc_Example
+    orgIdentifier: default
+    tags: {}
+    stages:
+        - stage:
+              name: helloworld
+              identifier: helloworld
+              description: ""
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: maven package
+                                identifier: maven_package
+                                spec:
+                                    connectorRef: <+input>
+                                    image: <+input>
+                                    command: echo "hello world"
+                                    privileged: false
+                  serviceDependencies: []
+                  infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                          connectorRef: <+input>
+                          namespace: harness-delegate-pm
