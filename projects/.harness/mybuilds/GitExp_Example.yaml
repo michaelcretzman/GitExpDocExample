@@ -1,0 +1,21 @@
+pipeline:
+    name: GitExp Example
+    identifier: GitExp_Example
+    projectIdentifier: GitExp_Doc_Example
+    orgIdentifier: default
+    tags: {}
+    stages:
+        - stage:
+              name: example
+              identifier: example
+              description: ""
+              type: CI
+              spec:
+                  cloneCodebase: false
+                  execution:
+                      steps: []
+                  serviceDependencies: []
+                  infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                          namespace: <+input>
