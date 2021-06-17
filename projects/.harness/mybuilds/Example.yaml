@@ -28,4 +28,4 @@ pipeline:
                       type: KubernetesDirect
                       spec:
                           connectorRef: <+input>
-                          namespace: harness-delegate-pm
+                          namespace: default
