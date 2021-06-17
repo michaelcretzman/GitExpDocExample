@@ -16,8 +16,8 @@ pipeline:
                       steps:
                           - step:
                                 type: Run
-                                name: maven package
-                                identifier: maven_package
+                                name: example
+                                identifier: example
                                 spec:
                                     connectorRef: <+input>
                                     image: <+input>
