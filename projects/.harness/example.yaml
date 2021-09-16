@@ -1,0 +1,48 @@
+pipeline:
+    name: example
+    identifier: example
+    projectIdentifier: Harness_Git_Experience2
+    orgIdentifier: default
+    tags: {}
+    stages:
+        - stage:
+              name: test
+              identifier: test
+              description: ""
+              type: Deployment
+              spec:
+                  serviceConfig:
+                      serviceRef: <+input>
+                      serviceDefinition:
+                          type: Kubernetes
+                          spec:
+                              variables: []
+                  infrastructure:
+                      environmentRef: <+input>
+                      infrastructureDefinition:
+                          type: KubernetesDirect
+                          spec:
+                              connectorRef: <+input>
+                              namespace: <+input>
+                              releaseName: release-<+INFRA_KEY>
+                      allowSimultaneousDeployments: false
+                  execution:
+                      steps:
+                          - step:
+                                type: Http
+                                name: GET
+                                identifier: GET
+                                spec:
+                                    url: https://fpp.com
+                                    method: GET
+                                    headers: []
+                                    outputVariables: []
+                                timeout: 10s
+                      rollbackSteps: []
+              tags: {}
+              failureStrategies:
+                  - onFailure:
+                        errors:
+                            - AllErrors
+                        action:
+                            type: StageRollback
